@@ -1,0 +1,91 @@
+body{
+    background: linear-gradient(rgba(102, 116, 153, 0.75), rgba(111, 129, 175, 0.75));
+    background-image: url(../media/Diseño\ sin\ título\ \(1\).png) ;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    
+    
+
+}
+a{
+    text-decoration: none;
+    color:black
+}
+header{
+    min-height: 80px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo img{
+    height: 50px;
+    margin-right: 10px;
+}
+nav{
+    display: flex;
+    justify-content: space-evenly; 
+}
+nav a{
+    font-weight: 600;
+    padding-right: 10px;
+}
+nav a:hover{
+    color:red
+}
+
+.contenedor{
+    display: flex;
+
+}
+.noticia1{
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #aaa;
+    display: flex;
+    flex-direction: column;
+    max-width:300px;
+    align-items: center;
+    text-align: center;
+    font-size: 17px; /* Ajusta el tamaño de fuente para todos los elementos dentro de .noticia */
+}
+.noticia2{
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #aaa;
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    align-items: center;
+    text-align: center;
+    font-size: 17px; /* Ajusta el tamaño de fuente para todos los elementos dentro de .noticia */
+}
+.noticia {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #aaa;
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+    align-items: center;
+    text-align: center;
+    font-size: 17px; /* Ajusta el tamaño de fuente para todos los elementos dentro de .noticia */
+  }
+  
+  .titulo {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .imagen {
+    max-width: 50%;
+  }
+  
+ 
