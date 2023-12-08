@@ -1,0 +1,134 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" >
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" >
+  
+</head>
+<body>  
+    {% if mensaje_error %}
+    <div class="alert alert-danger" role="alert">
+        {{ mensaje_error }}
+    </div>
+    {% endif %}
+    <header>
+        <a href="INDEX.html" class="logo">
+            <img src="{% static 'media/logo.jpg' %}">
+            <h2 class="compañia">SneakersNewsVans</h2>
+        </a>
+    </header> 
+    <nav class="nav">
+        <a href="{% url 'app' %}">Home</a>
+        <a href="{% url 'nike' %}">Nike</a>
+        <a href="{% url 'adidas' %}">Adidas</a>
+        <a href="{% url 'vans' %}">Vans</a>
+        <a href="{% url 'otros' %}">Otros</a>
+  
+        {%if not user.is_authenticated%}
+          <a class="nav-link active" href="/sigin">Ingresar</a>
+          {% endif%}
+          {%if user.is_authenticated%}
+          <a class="nav-link active" href="/logout">Salir</a>
+        <a href="/noticia/">Hola, {{ user.username }}</a>
+        {% endif%}
+        <a id="nombreUsuario"></a>
+    </nav>
+    <div class="spacer"></div>
+    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="table-responsive py-2">
+                        <div class="table responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Titulo</th>
+                                        <th colspan="3">Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for c in noticia %}
+                                        <tr>
+                                            <td>{{ c.codigo }}</td>
+                                            <td>{{ c.titulo }}</td>
+                                            <td><a href="{% url 'ver' codigo=c.codigo %}" class="btn btn-success">Ver</a></td>
+                                            <td><a href="{% url 'edicion' codigo=c.codigo %}" class="btn btn-info">Editar</a></td>
+                                            <td><a href="{% url 'borrar' codigo=c.codigo %}" class="btn btn-danger">Borrar</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h2>Noticia</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/registrarNoticia/" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            <label for="codigo">Código:</label>
+                            <input  type="text" id="codigo" name="codigo" class="form-control" placeholder="Código" required>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="titulo">Título:</label>
+                            <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Título" required>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="parrafo">Párrafo:</label>
+                            <input type="text" id="parrafo" name="parrafo" class="form-control" placeholder="Párrafo" required>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="noticial">Noticia:</label>
+                            <textarea id="noticial" name="noticial" class="form-control" rows="10" cols="50" placeholder="Noticia" required></textarea>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="categoria">Categoría:</label>
+                            <select id="categoria" name="categoria" class="form-control" required>
+                                <option value="Nike">Nike</option>
+                                <option value="Adidas">Adidas</option>
+                                <option value="Vans">Vans</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usuario">Usuario:</label>
+                            <textarea id="usuario" name="usuario" class="form-control" required readonly>{% if user.is_authenticated %}{{ user.username }}{% endif %}</textarea>
+                        </div>
+                        
+    
+                        <div class="form-group">
+                            <label for="imagen">Selecciona una imagen:</label>
+                            <input type="file" id="imagen" name="imagen" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+                <a href="{% url 'app' %}" class="btn btn-secondary btn-block">Regresar</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

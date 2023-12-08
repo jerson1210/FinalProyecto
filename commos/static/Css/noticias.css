@@ -1,0 +1,31 @@
+.noti.not{
+    flex-direction: column;
+    
+}
+.noti {
+    margin-top: 5% ;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+  }
+  
+  .tit {
+    font-weight: bold;
+    margin-bottom: 30px;
+    
+  }
+  
+  .image {
+    max-width: 50%;
+    float: right; /* La imagen flotará a la derecha */
+    margin: 10px;
+    max-height: 10%;
+  }
+  
+  .descripcio {
+    
+    text-align: left;
+    margin: 10px;
+   
+  }
+  
